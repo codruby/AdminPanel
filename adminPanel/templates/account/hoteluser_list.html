@@ -1,0 +1,43 @@
+{% extends 'inventory/base_dashboard.html' %}
+
+{% block content %}
+<div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-0 main">
+    <h1 class="page-header">Our Partner Hotels</h1>
+    <!--<h1 style="margin: 30px;">Dashboard</h1>-->
+    <!--<div style="margin: 30px">-->
+
+    <div class="container-fluid">
+        {% include "account/create_hoteluser_form.html" %}
+    </div>
+    <br>
+    <div>
+        {% if hoteluser_list %}
+        <table class="table table-striped">
+            <tr>
+                <!--<th>Id</th>-->
+                <th>Hotel Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for hotel in hoteluser_list %}
+            <tr>
+                <!--<td>{{ hotel.hotel_id }}</td>-->
+                <td><a href="{% url 'inventory:hotel_details' hotel.hotel_id %}">{{ hotel.hotel_name }}</a></td>
+                <td>{% include "account/update_hoteluser_form.html" with id=hotel.hotel_id %}</td>
+                <!--Delete Button Does do anything-->
+                <td>
+                    <form method="GET" action="#">
+                    <!--{% csrf_token %}-->
+                        <button type="submit" class="btn btn-danger" data-toggle="modal"
+                        data-original-title="Delete Hotel ">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

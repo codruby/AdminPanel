@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base_dashboard.css' %}">
+    <script type="text/javascript" src="{% static 'js/base_dashboard.js' %}"></script>
+    <script src="{% static 'js/bootstrap-typeahead.js' %}"></script>
+
+
+</head>
+
+<body>
+<!--New navbar-->
+<div class="navbar navbar-fixed-top navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Rabbit</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li><a href="#">{{ user|title }}</a></li>
+            {% endif %}
+            <li><a href="{% url 'account:logout' %}"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-sm-3 col-md-2 sidebar" >
+            <!--<br><br>-->
+            <ul class="nav nav-sidebar" >
+                <!--<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>-->
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="{% url 'inventory:list_inventory' %}">Inventory</a></li>
+                <li><a href="{% url 'account:list_hotels' %}">Know Your Business</a></li>
+                <li><a href="#">Payment</a></li>
+            </ul>
+        </div>
+
+        <!--Enter block content here -->
+
+        {% block content %}
+        {% endblock %}
+
+        <!--<footer>-->
+        <!--<p>© Smerkato 2017</p>-->
+        <!--</footer>-->
+
+    </div>
+</div>
+</body>
+</html>
+

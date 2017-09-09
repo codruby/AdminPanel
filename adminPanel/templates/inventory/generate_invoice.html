@@ -1,0 +1,101 @@
+{% extends 'inventory/base_dashboard.html' %}
+
+{% block content %}
+<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-0 main">
+    {% now "d-m-Y" as current_date %}
+
+    <!--<h2 class="page-header">Invoice for Date: <span id="date"></span></h2>-->
+    <h2 class="page-header">Invoice for Date: {{ current_date }}</h2>
+    <!--<h1 style="margin: 30px;">Dashboard</h1>-->
+    <!--<div style="margin: 30px">-->
+    {% include "inventory/add_product_to_invoice.html" %}
+    <br>
+    <div>
+        {% if data %}
+        <form method="POST" action="{% url 'inventory:invoice' hotel_id %}">
+            {% csrf_token %}
+            <table class="table table-hover table-responsive">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Units</th>
+                    <th>Rate/Unit</th>
+                </tr>
+
+                {% for dt in data %}
+                <tr>
+                    <td>
+                        <div class="form-group"><input required type="text" class="form-control"
+                                                       id="p_name-{{ forloop.counter }}" value="{{ dt.product_name }}"
+                                                       name="p_name-{{ forloop.counter }}" readonly></div>
+                    </td>
+                    <td>
+                        <div class="form-group"><input required type="number" step="0.01" class="form-control"
+                                                       id="quantity-{{ forloop.counter }}" value="{{ dt.quantity }}"
+                                                       name="quantity-{{ forloop.counter }}"></div>
+                    </td>
+                    <td>
+                        <div class="form-group"><input required type="text" class="form-control"
+                                                       id="units-{{ forloop.counter }}" value="{{ dt.units }}"
+                                                       name="units-{{ forloop.counter }}" readonly></div>
+                    </td>
+                    <td>
+                        <div class="form-group"><input required type="number" step="0.01" class="form-control"
+                                                       id="rate_per_unit-{{ forloop.counter }}" value="{{ dt.rate_per_unit }}"
+                                                       name="rate_per_unit-{{ forloop.counter }}"></div>
+                    </td>
+                    <td>
+                        <form method="POST" action="{% url 'inventory:delete_product_invoice' hotel_id current_date dt.product_name %}">
+                        {% csrf_token %}
+                            <button type="submit" class="btn btn-danger" data-toggle="modal"
+                                data-original-title="Delete Product from current Invoice">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="checkbox form-group">
+              <label><input type="checkbox" value="" id="save_checkbox" name="save_checkbox">Save to Orders</label>
+            </div>
+            <div class="form-group">
+                <label id="pay_label">Enter Pay Date:  <input type="text" value="" id="pay_date"
+                                                              name="pay_date" placeholder=" DD-MM-YYYY"></label>
+            </div>
+            <div class="form-group">
+                <input type="hidden" value="{{ current_date }}" id="invoice_date" name="invoice_date">
+            </div>
+            <button id="submit_invoice" type="submit" class="btn btn-info">Save Invoice</button>
+
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    <!--var d = new Date();-->
+    <!--var strDate = d.getDate() + "-" + (d.getMonth()+1) + "-" + d.getFullYear();-->
+    <!--$('#date').html(strDate);-->
+    <!--$('#invoice_date').val(strDate);-->
+    $('#pay_label').hide();
+    $('#pay_date').prop('required', false);
+    $('#save_checkbox').on('click', function(){
+        $('#pay_label').toggle();
+        if ($('#pay_date').prop('required')){
+            $('#pay_date').prop('required', false);
+            $('#submit_invoice').html("Save Invoice");
+        }
+        else {
+            $('#pay_date').prop('required', true);
+            $('#submit_invoice').html("Save Invoice and Download");
+        }
+    });
+
+});
+
+</script>
+
+{% endblock %}
+

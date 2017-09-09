@@ -1,0 +1,38 @@
+{% extends 'inventory/base_dashboard.html' %}
+
+{% block content %}
+<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-0 main">
+    {% now "d-m-Y" as current_date %}
+
+    <!--<h2 class="page-header">Invoice for Date: <span id="date"></span></h2>-->
+    <h2 class="page-header">Invoices :  {{ hotel_name|title }}</h2>
+    <!--<h1 style="margin: 30px;">Dashboard</h1>-->
+    <!--<div style="margin: 30px">-->
+    <br>
+    <div>
+        {% if data %}
+            <table class="table table-hover table-responsive">
+                <tr>
+                    <th>S. No.</th>
+                    <th>Invoices</th>
+                    <th>Last Modified</th>
+                </tr>
+                {% for dt in data %}
+                <tr>
+                    <td>
+                        {{ forloop.counter }}
+                    </td>
+                    <td>
+                        <a href="{% url 'inventory:get_file' dt.invoice_name %}">{{ dt.invoice_name }}</a>
+                    </td>
+                    <td>
+                        {{ dt.last_modified }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

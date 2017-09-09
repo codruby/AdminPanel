@@ -1,0 +1,68 @@
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#updateModal{{ id }}"
+        data-original-title="Edit Hotel">
+    <span class="glyphicon glyphicon-edit"></span></button>
+
+<!--Modal -->
+<div id="updateModal{{ id }}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Hotel</h4>
+            </div>
+            <div class="modal-body">
+                <!--{{ form }}-->
+                <form method="POST" action="{% url 'account:update_hotel' hotel.hotel_id %}">
+                    {% csrf_token %}
+                    {{ hotel_id }}
+                    <div class="form-group">
+                        <label for="hotel_name">Hotel Name:</label>
+                        <input required type="text" class="form-control" id="hotel_name"
+                               value="{{ hotel.hotel_name }}" name="hotel_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_person">Contact Person:</label>
+                        <input required type="text" class="form-control" id="contact_person"
+                               value="{{ hotel.contact_person }}" name="contact_person">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_number">Contact Number:</label>
+                        <input required type="number" pattern="[1-9]{1}[0-9]{9}" class="form-control" id="contact_number"
+                               value="{{ hotel.contact_number }}" name="contact_number" size="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_email">Contact Email:</label>
+                        <input type="email" class="form-control" id="contact_email"
+                               value="{{ hotel.contact_email }}" name="contact_email">
+                    </div>
+                    <div class="form-group">
+                        <label for="hotel_address_line_1">Hotel Address Line 1:</label>
+                        <input type="text" class="form-control" id="hotel_address_line_1"
+                              value="{{ hotel.hotel_address_line_1 }}" name="hotel_address_line_1">
+                    </div>
+                    <div class="form-group">
+                        <label for="hotel_address_line_2">Hotel Address Line 2:</label>
+                        <input type="text" class="form-control" id="hotel_address_line_2"
+                              value="{{ hotel.hotel_address_line_2 }}" name="hotel_address_line_2">
+                    </div>
+                    <div class="form-group">
+                        <label for="hotel_address_line_3">Hotel Address Line 3:</label>
+                        <input type="text" class="form-control" id="hotel_address_line_3"
+                              value="{{ hotel.hotel_address_line_3 }}" name="hotel_address_line_3">
+                    </div>
+
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+
+</script>

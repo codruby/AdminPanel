@@ -1,0 +1,58 @@
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#updateModal{{base_id}}"
+        data-original-title="Edit product">
+    <span class="glyphicon glyphicon-edit"></span></button>
+
+<!--Modal -->
+<div id="updateModal{{base_id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Product</h4>
+            </div>
+            <div class="modal-body">
+                <!--{{ form }}-->
+                <form method="POST" action="{% url 'inventory:update_product' base.inventory_id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="product_name">Product Name:</label>
+                        <input required type="text" class="form-control" id="product_name"
+                               value="{{ base.product_name }}" name="product_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <input required type="number" step="0.01" class="form-control" id="quantity" value="{{ base.quantity }}"
+                               name="quantity">
+                    </div>
+                    <div class="form-group">
+                        <label for="units">Units:</label>
+                        <select class="form-control" id="units" name="units">
+                            <option>KGs</option>
+                            <option>Grams</option>
+                            <option>Ml</option>
+                            <option>Ltrs</option>
+                            <option>Bags</option>
+                            <option>Tins</option>
+                            <option>Pouches</option>
+                            <option>Boxes</option>
+                            <option>Pieces</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rate_per_unit">Rate Per Units:</label>
+                        <input required type="number" step="0.01" class="form-control" id="rate_per_unit" value="{{ base.rate_per_unit }}"
+                               name="rate_per_unit">
+                    </div>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

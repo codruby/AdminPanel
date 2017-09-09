@@ -1,0 +1,49 @@
+{% extends 'inventory/base_dashboard.html' %}
+
+{% block content %}
+<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-0 main">
+    <h1 class="page-header">BaseInventory</h1>
+    <!--<h1 style="margin: 30px;">Dashboard</h1>-->
+    <!--<div style="margin: 30px">-->
+
+    <div class="container-fluid">
+        {% include "inventory/create_form.html" %}
+    </div>
+    <br>
+    <div>
+        {% if baseinventory_list %}
+        <table class="table table-striped">
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Units</th>
+                <th>Rate/Unit</th>
+                <th>Amount</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for base in baseinventory_list %}
+            <tr>
+                <td>{{ base.product_name }}</td>
+                <td>{{ base.quantity }}</td>
+                <td>{{ base.units }}</td>
+                <td>{{ base.rate_per_unit }}</td>
+                <td>{{ base.amount }}</td>
+                <!--<td><a href="{% url 'inventory:update_product' base.inventory_id %}">Edit</a> </td>-->
+                <td>{% include "inventory/update_form.html" with base_id=base.inventory_id %}</td>
+                <td>
+                    <form method="GET" action="{% url 'inventory:delete_product' base.inventory_id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger" data-toggle="modal"
+                                data-original-title="Delete product">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

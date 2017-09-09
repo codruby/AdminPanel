@@ -1,0 +1,8 @@
+HotelName,ContactPerson,ContactNo,ContactEmail,ModeOfPayment,Address,Latitude,Longitude,DistanceFromSmerkato,LoginId,LoginPwd
+Sham Savera,Mohith,8454058289,a@gmail.com,COD,"1, 20th Main Rd, KEB Colony, Jay Bheema Nagar, 1st Stage, BTM Layout 1, Bengaluru, Karnataka 560029",12.9169514,"77.6103257
+",0.5,test1,test1234
+Aathurar,Silambu,7676510871,b@gmail.com,COD,"476, Ground floor Jeevan Bhima Nagar, HAL 3rd Stage, Bengaluru, Karnataka 560075",12.9689004,77.6461531,1.5,test2,test1235
+The Paramount,Akbar,9886900000,c@gmail.com,COD,"177/178, Amarjyoti Layout, Domlur, Bengaluru, Karnataka 560071",12.955925,77.6393373,2.5,test3,test1236
+Andhra Mess,Shiva Kumar ,879238202,d@gmail.com,COD,"177/178, Amarjyoti Layout, Domlur, Bengaluru, Karnataka 560072",13.955925,78.6393373,3.5,test4,test1237
+Nukkad,Fayaz,9845740629,e@gmail.com,COD,"177/178, Amarjyoti Layout, Domlur, Bengaluru, Karnataka 560073",14.955925,79.6393373,4.5,test5,test1238
+Ammamma's,Kishore,9810412759,f@gmail.com,COD,"177/178, Amarjyoti Layout, Domlur, Bengaluru, Karnataka 560074",15.955925,80.6393373,5.5,test6,test1239

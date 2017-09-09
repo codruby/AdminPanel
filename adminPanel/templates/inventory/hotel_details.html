@@ -1,0 +1,70 @@
+{% extends 'inventory/base_dashboard.html' %}
+{% block content %}
+<div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-0 main">
+    {% now "d-m-Y" as current_date %}
+    <!--<a href="{% url 'inventory:listform_for_invoice' hotel_id current_date %}" class="btn btn-default" data-toggle="modal"-->
+            <!--data-original-title="Generate Invoice" id="check">-->
+    <!--</a>-->
+
+
+    <h1 class="page-header">{{ hotel_name }} Products</h1>
+    <!--<h1 style="margin: 30px;">Dashboard</h1>-->
+    <!--<div style="margin: 30px">-->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="well col-md-3 col-md-offset-0" style="width:100px;height:100px;">
+            {% include "inventory/create_predefined_products.html" %}
+            </div>
+            <div class="well col-md-3 col-md-offset-1" style="width:100px;height:100px;">
+                <a href="{% url 'inventory:listform_for_invoice' hotel_id current_date %}" class="btn btn-info"
+                   data-toggle="modal" data-original-title="Generate Invoice">
+                    <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <div class="well col-md-3 col-md-offset-1" style="width:100px;height:100px;">
+                <a href="{% url 'inventory:invoice' hotel_id %}" class="btn btn-info" data-toggle="modal"
+                data-original-title="View Invoices"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div>
+        {% if data %}
+        <table class="table table-striped">
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Units</th>
+                <th>Rate/Unit</th>
+                <th>Amount</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for dt in data %}
+            <tr>
+                <td>{{ dt.product_name }}</td>
+                <td>{{ dt.quantity }}</td>
+                <td>{{ dt.units }}</td>
+                <td>{{ dt.rate_per_unit }}</td>
+                <td>{{ dt.amount }}</td>
+                <td>{% include "inventory/update_predefined_products.html" %}</td>
+                <td>
+                    <form method="GET" action="#">
+                    <!--{% csrf_token %}-->
+                        <button type="submit" class="btn btn-danger" data-toggle="modal"
+                        data-original-title="Delete Product">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    background-image: "/home/divya/workspace/latest/rabbit-project/adminPanel/templates/inventory/smerkato.png"
+</style>
+{% endblock %}

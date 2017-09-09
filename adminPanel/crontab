@@ -1,0 +1,6 @@
+#Cron to clear Daily Logs
+30 17 * * * root env - `cat /root/env.txt` /bin/sh /adminPanel/clearLogs.sh >> /var/log/scripts/clearLogs.log 2>&1
+
+#Cron to run at 12 am for Flipkart
+30 8 * * * root env - `cat /root/env.txt` /usr/bin/python /adminPanel/utilities/alert_for_payment.py >> /var/log/scripts/alert_for_payment.log 2>&1
+

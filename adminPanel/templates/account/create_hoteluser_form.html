@@ -1,0 +1,61 @@
+<!-- Trigger the modal with a button -->
+
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#hotelModal"
+        data-original-title="Add new hotel"><span class="glyphicon glyphicon-plus"></span></button>
+
+<!--Modal -->
+<div id="hotelModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add New Hotel</h4>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'account:create_hotel' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="hotel_name">Hotel Name:</label>
+                        <input required type="text" class="form-control" id="hotel_name"
+                               placeholder="Enter Hotel Name" name="hotel_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_person">Contact Person:</label>
+                        <input required type="text" class="form-control" id="contact_person"
+                               placeholder="Enter Contact Person" name="contact_person">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_number">Contact Number:</label>
+                        <input required type="number" pattern="[1-9]{1}[0-9]{9}" class="form-control" id="contact_number"
+                               placeholder="Enter Contact Number" name="contact_number" size="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_email">Contact Email:</label>
+                        <input type="email" class="form-control" id="contact_email"
+                               placeholder="Enter Contact Email" name="contact_email">
+                    </div>
+                    <div class="form-group">
+                        <label for="hotel_address_line_1">Hotel Address Line 1:</label>
+                        <input required type="text" class="form-control" id="hotel_address_line_1"
+                               placeholder="Enter Hotel Address Line 1" name="hotel_address_line_1">
+                    </div>
+                    <div class="form-group">
+                        <label for="hotel_address_line_2">Hotel Address Line 2:</label>
+                        <input required type="text" class="form-control" id="hotel_address_line_2"
+                               placeholder="Enter Hotel Address Line 2" name="hotel_address_line_2">
+                    </div>
+                    <div class="form-group">
+                        <label for="hotel_address_line_3">Hotel Address Line 3:</label>
+                        <input required type="text" class="form-control" id="hotel_address_line_3"
+                               placeholder="Enter Hotel Address Line 3" name="hotel_address_line_3">
+                    </div>
+
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

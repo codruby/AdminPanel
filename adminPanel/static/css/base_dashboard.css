@@ -1,0 +1,76 @@
+@import url("https://bootswatch.com/flatly/bootstrap.min.css");
+
+body {
+  padding-top: 50px;
+  height: 100%;
+  //background-color: blue;
+  //font-family: "Lato", sans-serif;
+}
+
+
+footer {
+  padding-left: 600px;
+  padding-right: 15px;
+  //bottom: -50px;
+  //height: 50px;
+  //left: 0;
+  position: absolute;
+  //right: 0;
+}
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+
+ /*
+@media screen and (max-width: 768px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    background:#ecf0f1;
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -40%;
+  }
+
+  .row-offcanvas-left.active {
+    left: 40%;
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 40%;
+    margin-left: 12px;
+  }
+}*/
+
+#sidebar {
+    //padding:10px;
+    margin-top:10px;
+    height: 100%; /* 100% Full-height */
+    width: 250px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0px;
+    left: 0px;
+    background-color: lightblue; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 100px; /* Place content 60px from the top */
+    padding-bottom: 60px;
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.sidebar {
+      top: 20px;
+      //position: absolute; /* Stay in place */
+}
+
+.main {
+    top:20px;
+}
